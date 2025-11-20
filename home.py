@@ -4,11 +4,38 @@ import os
 
 st.set_page_config(page_title="Exibir Imagem", layout="centered")
 
-# menu lateral 
+st.sidebar.title("Menu")
+
+# menu lateral COM ABA 
 menu = st.sidebar.selectbox(
-    "Menu",
-    ["Home", "Carregar Imagem"]
+    "ABAS- Menu box", 
+    ["Home", "Carregar Imagem", "Informações"]
 )
+
+
+#MENU DE BUTTOM
+
+if st.sidebar.button("Home"):
+    st.session_state["page"] = "home"
+
+if st.sidebar.button("Relatórios"):
+    st.session_state["page"] = "relatorios"
+
+if st.sidebar.button("Configurações"):
+    st.session_state["page"] = "config"
+
+page = st.session_state.get("page", "home")
+
+if page == "home":
+    st.title("Home")
+    st.write("Bem-vindo!")
+elif page == "relatorios":
+    st.title("Relatórios")
+    st.write("Aqui ficam os relatórios...")
+elif page == "config":
+    st.title("Configurações")
+    st.write("Ajustes e preferências...")
+
 
 # -tela inicial de bem vindo
 if menu == "Home":
